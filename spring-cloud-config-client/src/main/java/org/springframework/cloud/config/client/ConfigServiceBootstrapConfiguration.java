@@ -48,8 +48,7 @@ public class ConfigServiceBootstrapConfiguration {
 	@Bean
 	@ConditionalOnMissingBean
 	public ConfigClientProperties configClientProperties() {
-		ConfigClientProperties client = new ConfigClientProperties(this.environment);
-		return client;
+		return new ConfigClientProperties(this.environment);
 	}
 
 	@Bean

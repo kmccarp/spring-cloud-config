@@ -147,7 +147,7 @@ public class AwsSecretsManagerEnvironmentRepository implements EnvironmentReposi
 
 			if (response != null) {
 				Map<String, Object> secretMap = objectMapper.readValue(response.secretString(),
-						new TypeReference<Map<String, Object>>() {
+						new TypeReference<>() {
 						});
 
 				for (Map.Entry<String, Object> secretEntry : secretMap.entrySet()) {
