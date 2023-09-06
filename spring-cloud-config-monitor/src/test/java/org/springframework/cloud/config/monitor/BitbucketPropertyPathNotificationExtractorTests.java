@@ -37,7 +37,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 public class BitbucketPropertyPathNotificationExtractorTests {
 
-	private BitbucketPropertyPathNotificationExtractor extractor = new BitbucketPropertyPathNotificationExtractor();
+	private final BitbucketPropertyPathNotificationExtractor extractor = new BitbucketPropertyPathNotificationExtractor();
 
 	private HttpHeaders headers;
 
@@ -168,7 +168,7 @@ public class BitbucketPropertyPathNotificationExtractorTests {
 
 	private Map<String, Object> readPayload(String path) throws java.io.IOException {
 		return new ObjectMapper().readValue(new ClassPathResource(path).getInputStream(),
-				new TypeReference<Map<String, Object>>() {
+				new TypeReference<>() {
 				});
 	}
 

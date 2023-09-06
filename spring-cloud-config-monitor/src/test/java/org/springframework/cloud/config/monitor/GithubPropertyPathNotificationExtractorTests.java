@@ -33,16 +33,16 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 public class GithubPropertyPathNotificationExtractorTests {
 
-	private GithubPropertyPathNotificationExtractor extractor = new GithubPropertyPathNotificationExtractor();
+	private final GithubPropertyPathNotificationExtractor extractor = new GithubPropertyPathNotificationExtractor();
 
-	private HttpHeaders headers = new HttpHeaders();
+	private final HttpHeaders headers = new HttpHeaders();
 
 	@Test
 	public void githubSample() throws Exception {
 		// See https://developer.github.com/v3/activity/events/types/#pushevent
 		Map<String, Object> value = new ObjectMapper().readValue(
 				new ClassPathResource("pathsamples/github.json").getInputStream(),
-				new TypeReference<Map<String, Object>>() {
+				new TypeReference<>() {
 				});
 		this.headers.set("X-Github-Event", "push");
 		PropertyPathNotification extracted = this.extractor.extract(this.headers, value);
@@ -54,7 +54,7 @@ public class GithubPropertyPathNotificationExtractorTests {
 	public void notAPushNotDetected() throws Exception {
 		Map<String, Object> value = new ObjectMapper().readValue(
 				new ClassPathResource("pathsamples/github.json").getInputStream(),
-				new TypeReference<Map<String, Object>>() {
+				new TypeReference<>() {
 				});
 		this.headers.set("X-Github-Event", "issues");
 		PropertyPathNotification extracted = this.extractor.extract(this.headers, value);
