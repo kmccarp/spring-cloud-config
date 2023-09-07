@@ -46,7 +46,7 @@ public class ConfigServerConfigDataResource extends ConfigDataResource {
 
 	private Log log;
 
-	private boolean isProfileSpecific = false;
+	private boolean isProfileSpecific;
 
 	public ConfigServerConfigDataResource(ConfigClientProperties properties, boolean optional, Profiles profiles) {
 		this.properties = properties;
