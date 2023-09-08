@@ -35,17 +35,17 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 public class CompositePropertyPathNotificationExtractorTests {
 
-	private CompositePropertyPathNotificationExtractor extractor = new CompositePropertyPathNotificationExtractor(Arrays
-			.asList(new GitlabPropertyPathNotificationExtractor(), new GithubPropertyPathNotificationExtractor()));
+	private final CompositePropertyPathNotificationExtractor extractor = new CompositePropertyPathNotificationExtractor(Arrays
+.asList(new GitlabPropertyPathNotificationExtractor(), new GithubPropertyPathNotificationExtractor()));
 
-	private HttpHeaders headers = new HttpHeaders();
+	private final HttpHeaders headers = new HttpHeaders();
 
 	@Test
 	public void githubSample() throws Exception {
 		// See https://developer.github.com/v3/activity/events/types/#pushevent
 		Map<String, Object> value = new ObjectMapper().readValue(
 				new ClassPathResource("pathsamples/github.json").getInputStream(),
-				new TypeReference<Map<String, Object>>() {
+				new TypeReference<>() {
 				});
 		this.headers.set("X-Github-Event", "push");
 		PropertyPathNotification extracted = this.extractor.extract(this.headers, value);
@@ -57,7 +57,7 @@ public class CompositePropertyPathNotificationExtractorTests {
 	public void gitlabDetected() throws Exception {
 		Map<String, Object> value = new ObjectMapper().readValue(
 				new ClassPathResource("pathsamples/gitlab.json").getInputStream(),
-				new TypeReference<Map<String, Object>>() {
+				new TypeReference<>() {
 				});
 		this.headers.set("X-Gitlab-Event", "Push Hook");
 		PropertyPathNotification extracted = this.extractor.extract(this.headers, value);
@@ -68,7 +68,7 @@ public class CompositePropertyPathNotificationExtractorTests {
 
 	@Test
 	public void fallback() throws Exception {
-		Map<String, Object> value = Collections.<String, Object>singletonMap("path", "foo");
+		Map<String, Object> value = Collections.singletonMap("path", "foo");
 		PropertyPathNotification extracted = this.extractor.extract(this.headers, value);
 		assertThat(extracted).isNotNull();
 		assertThat(extracted.getPaths()[0]).isEqualTo("foo");
