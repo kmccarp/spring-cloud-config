@@ -90,7 +90,7 @@ import static org.springframework.vault.authentication.AzureMsiAuthenticationOpt
 
 class SpringVaultClientConfigurationTests {
 
-	private VaultEnvironmentProperties properties = new VaultEnvironmentProperties();
+	private final VaultEnvironmentProperties properties = new VaultEnvironmentProperties();
 
 	private List<SpringVaultClientAuthenticationProvider> authProviders;
 

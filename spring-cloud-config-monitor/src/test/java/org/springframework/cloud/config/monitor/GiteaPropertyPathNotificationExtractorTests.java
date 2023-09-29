@@ -33,16 +33,16 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 public class GiteaPropertyPathNotificationExtractorTests {
 
-	private GiteaPropertyPathNotificationExtractor extractor = new GiteaPropertyPathNotificationExtractor();
+	private final GiteaPropertyPathNotificationExtractor extractor = new GiteaPropertyPathNotificationExtractor();
 
-	private HttpHeaders headers = new HttpHeaders();
+	private final HttpHeaders headers = new HttpHeaders();
 
 	@Test
 	public void giteaSample() throws Exception {
 		// See https://docs.gitea.io/en-us/webhooks/
 		Map<String, Object> value = new ObjectMapper().readValue(
 				new ClassPathResource("pathsamples/gitea.json").getInputStream(),
-				new TypeReference<Map<String, Object>>() {
+				new TypeReference<>() {
 				});
 		this.headers.set("X-Gitea-Event", "push");
 		PropertyPathNotification extracted = this.extractor.extract(this.headers, value);
@@ -54,7 +54,7 @@ public class GiteaPropertyPathNotificationExtractorTests {
 	public void notAPushNotDetected() throws Exception {
 		Map<String, Object> value = new ObjectMapper().readValue(
 				new ClassPathResource("pathsamples/gitea.json").getInputStream(),
-				new TypeReference<Map<String, Object>>() {
+				new TypeReference<>() {
 				});
 		this.headers.set("X-Gitea-Event", "issues");
 		PropertyPathNotification extracted = this.extractor.extract(this.headers, value);

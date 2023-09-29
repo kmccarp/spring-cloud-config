@@ -52,10 +52,7 @@ public class PropertyPathNotification {
 		if (!other.canEqual(this)) {
 			return false;
 		}
-		if (!java.util.Arrays.deepEquals(this.getPaths(), other.getPaths())) {
-			return false;
-		}
-		return true;
+		return java.util.Arrays.deepEquals(this.getPaths(), other.getPaths());
 	}
 
 	public int hashCode() {
