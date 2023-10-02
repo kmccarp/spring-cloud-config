@@ -33,16 +33,16 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 public class GogsPropertyPathNotificationExtractorTests {
 
-	private GogsPropertyPathNotificationExtractor extractor = new GogsPropertyPathNotificationExtractor();
+	private final GogsPropertyPathNotificationExtractor extractor = new GogsPropertyPathNotificationExtractor();
 
-	private HttpHeaders headers = new HttpHeaders();
+	private final HttpHeaders headers = new HttpHeaders();
 
 	@Test
 	public void gogsSample() throws Exception {
 		// See https://gogs.io/docs/features/webhook
 		Map<String, Object> value = new ObjectMapper().readValue(
 				new ClassPathResource("pathsamples/gogs.json").getInputStream(),
-				new TypeReference<Map<String, Object>>() {
+				new TypeReference<>() {
 				});
 		this.headers.set("X-Gogs-Event", "push");
 		PropertyPathNotification extracted = this.extractor.extract(this.headers, value);
@@ -54,7 +54,7 @@ public class GogsPropertyPathNotificationExtractorTests {
 	public void notAPushNotDetected() throws Exception {
 		Map<String, Object> value = new ObjectMapper().readValue(
 				new ClassPathResource("pathsamples/gogs.json").getInputStream(),
-				new TypeReference<Map<String, Object>>() {
+				new TypeReference<>() {
 				});
 		this.headers.set("X-Gogs-Event", "issues");
 		PropertyPathNotification extracted = this.extractor.extract(this.headers, value);

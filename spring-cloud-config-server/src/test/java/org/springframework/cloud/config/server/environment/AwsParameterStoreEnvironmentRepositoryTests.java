@@ -63,21 +63,21 @@ public class AwsParameterStoreEnvironmentRepositoryTests {
 
 	@Container
 	private static final LocalStackContainer localstack = new LocalStackContainer(
-			DockerImageName.parse("localstack/localstack:1.3.1")).withServices(SSM);
+DockerImageName.parse("localstack/localstack:1.3.1")).withServices(SSM);
 
 	private final StaticCredentialsProvider staticCredentialsProvider = StaticCredentialsProvider
-			.create(AwsBasicCredentials.create(localstack.getAccessKey(), localstack.getSecretKey()));
+.create(AwsBasicCredentials.create(localstack.getAccessKey(), localstack.getSecretKey()));
 
 	private final SsmClient ssmClient = SsmClient.builder().region(Region.of(localstack.getRegion()))
-			.credentialsProvider(staticCredentialsProvider).endpointOverride(localstack.getEndpointOverride(SSM))
-			.build();
+.credentialsProvider(staticCredentialsProvider).endpointOverride(localstack.getEndpointOverride(SSM))
+.build();
 
 	private final ConfigServerProperties configServerProperties = new ConfigServerProperties();
 
 	private final AwsParameterStoreEnvironmentProperties environmentProperties = new AwsParameterStoreEnvironmentProperties();
 
 	private final AwsParameterStoreEnvironmentRepository repository = new AwsParameterStoreEnvironmentRepository(
-			ssmClient, configServerProperties, environmentProperties);
+ssmClient, configServerProperties, environmentProperties);
 
 	private final List<String> toBeRemoved = new ArrayList<>();
 
@@ -395,14 +395,14 @@ public class AwsParameterStoreEnvironmentRepositoryTests {
 
 		String appSpecificDefaultParamsPsName = "aws:ssm:parameter:/config/service-default/";
 		PropertySource appSpecificDefaultParamsPs = new PropertySource(appSpecificDefaultParamsPsName,
-				APPLICATION_SPECIFIC_DEFAULT_PROPERTIES);
+	APPLICATION_SPECIFIC_DEFAULT_PROPERTIES);
 
 		String sharedDefaultParamsPsName = "aws:ssm:parameter:/config/application-default/";
 		PropertySource sharedDefaultParamsPs = new PropertySource(sharedDefaultParamsPsName, SHARED_DEFAULT_PROPERTIES);
 
 		String appSpecificParamsPsName = "aws:ssm:parameter:/config/service/";
 		PropertySource appSpecificParamsPs = new PropertySource(appSpecificParamsPsName,
-				APPLICATION_SPECIFIC_PROPERTIES);
+	APPLICATION_SPECIFIC_PROPERTIES);
 
 		String sharedParamsPsName = "aws:ssm:parameter:/config/application/";
 		PropertySource sharedParamsPs = new PropertySource(sharedParamsPsName, SHARED_PROPERTIES);
@@ -410,7 +410,7 @@ public class AwsParameterStoreEnvironmentRepositoryTests {
 		Environment expected = new Environment(application, profiles, null, null, null);
 
 		expected.addAll(
-				Arrays.asList(appSpecificDefaultParamsPs, sharedDefaultParamsPs, appSpecificParamsPs, sharedParamsPs));
+	Arrays.asList(appSpecificDefaultParamsPs, sharedDefaultParamsPs, appSpecificParamsPs, sharedParamsPs));
 
 		putParameters(expected);
 
@@ -430,14 +430,14 @@ public class AwsParameterStoreEnvironmentRepositoryTests {
 
 		String appSpecificDefaultParamsPsName = "aws:ssm:parameter:/config/service-default/";
 		PropertySource appSpecificDefaultParamsPs = new PropertySource(appSpecificDefaultParamsPsName,
-				APPLICATION_SPECIFIC_DEFAULT_PROPERTIES);
+	APPLICATION_SPECIFIC_DEFAULT_PROPERTIES);
 
 		String sharedDefaultParamsPsName = "aws:ssm:parameter:/config/application-default/";
 		PropertySource sharedDefaultParamsPs = new PropertySource(sharedDefaultParamsPsName, SHARED_DEFAULT_PROPERTIES);
 
 		String appSpecificParamsPsName = "aws:ssm:parameter:/config/service/";
 		PropertySource appSpecificParamsPs = new PropertySource(appSpecificParamsPsName,
-				APPLICATION_SPECIFIC_PROPERTIES);
+	APPLICATION_SPECIFIC_PROPERTIES);
 
 		String sharedParamsPsName = "aws:ssm:parameter:/config/application/";
 		PropertySource sharedParamsPs = new PropertySource(sharedParamsPsName, SHARED_PROPERTIES);
@@ -445,7 +445,7 @@ public class AwsParameterStoreEnvironmentRepositoryTests {
 		Environment expected = new Environment(application, profiles, null, null, null);
 
 		expected.addAll(
-				Arrays.asList(appSpecificDefaultParamsPs, sharedDefaultParamsPs, appSpecificParamsPs, sharedParamsPs));
+	Arrays.asList(appSpecificDefaultParamsPs, sharedDefaultParamsPs, appSpecificParamsPs, sharedParamsPs));
 
 		putParameters(expected);
 
@@ -465,7 +465,7 @@ public class AwsParameterStoreEnvironmentRepositoryTests {
 
 		String appSpecificParamsPsName = "aws:ssm:parameter:/config/service/";
 		PropertySource appSpecificParamsPs = new PropertySource(appSpecificParamsPsName,
-				APPLICATION_SPECIFIC_PROPERTIES);
+	APPLICATION_SPECIFIC_PROPERTIES);
 
 		String sharedParamsPsName = "aws:ssm:parameter:/config/application/";
 		PropertySource sharedParamsPs = new PropertySource(sharedParamsPsName, SHARED_PROPERTIES);
@@ -491,14 +491,14 @@ public class AwsParameterStoreEnvironmentRepositoryTests {
 
 		String appSpecificProdParamsPsName = "aws:ssm:parameter:/config/service-production/";
 		PropertySource appSpecificProdParamsPs = new PropertySource(appSpecificProdParamsPsName,
-				APPLICATION_SPECIFIC_PRODUCTION_PROPERTIES);
+	APPLICATION_SPECIFIC_PRODUCTION_PROPERTIES);
 
 		String sharedProdParamsPsName = "aws:ssm:parameter:/config/application-production/";
 		PropertySource sharedProdParamsPs = new PropertySource(sharedProdParamsPsName, SHARED_PRODUCTION_PROPERTIES);
 
 		String appSpecificParamsPsName = "aws:ssm:parameter:/config/service/";
 		PropertySource appSpecificParamsPs = new PropertySource(appSpecificParamsPsName,
-				APPLICATION_SPECIFIC_PROPERTIES);
+	APPLICATION_SPECIFIC_PROPERTIES);
 
 		String sharedParamsPsName = "aws:ssm:parameter:/config/application/";
 		PropertySource sharedParamsPs = new PropertySource(sharedParamsPsName, SHARED_PROPERTIES);
@@ -506,7 +506,7 @@ public class AwsParameterStoreEnvironmentRepositoryTests {
 		Environment expected = new Environment(application, profiles, null, null, null);
 
 		expected.addAll(
-				Arrays.asList(appSpecificProdParamsPs, sharedProdParamsPs, appSpecificParamsPs, sharedParamsPs));
+	Arrays.asList(appSpecificProdParamsPs, sharedProdParamsPs, appSpecificParamsPs, sharedParamsPs));
 
 		putParameters(expected);
 
@@ -526,21 +526,21 @@ public class AwsParameterStoreEnvironmentRepositoryTests {
 
 		String appSpecificProdParamsPsName = "aws:ssm:parameter:/config/service-production/";
 		PropertySource appSpecificProdParamsPs = new PropertySource(appSpecificProdParamsPsName,
-				APPLICATION_SPECIFIC_PRODUCTION_PROPERTIES);
+	APPLICATION_SPECIFIC_PRODUCTION_PROPERTIES);
 
 		String sharedProdParamsPsName = "aws:ssm:parameter:/config/application-production/";
 		PropertySource sharedProdParamsPs = new PropertySource(sharedProdParamsPsName, SHARED_PRODUCTION_PROPERTIES);
 
 		String appSpecificDefaultParamsPsName = "aws:ssm:parameter:/config/service-default/";
 		PropertySource appSpecificDefaultParamsPs = new PropertySource(appSpecificDefaultParamsPsName,
-				APPLICATION_SPECIFIC_DEFAULT_PROPERTIES);
+	APPLICATION_SPECIFIC_DEFAULT_PROPERTIES);
 
 		String sharedDefaultParamsPsName = "aws:ssm:parameter:/config/application-default/";
 		PropertySource sharedDefaultParamsPs = new PropertySource(sharedDefaultParamsPsName, SHARED_DEFAULT_PROPERTIES);
 
 		String appSpecificParamsPsName = "aws:ssm:parameter:/config/service/";
 		PropertySource appSpecificParamsPs = new PropertySource(appSpecificParamsPsName,
-				APPLICATION_SPECIFIC_PROPERTIES);
+	APPLICATION_SPECIFIC_PROPERTIES);
 
 		String sharedParamsPsName = "aws:ssm:parameter:/config/application/";
 		PropertySource sharedParamsPs = new PropertySource(sharedParamsPsName, SHARED_PROPERTIES);
@@ -548,7 +548,7 @@ public class AwsParameterStoreEnvironmentRepositoryTests {
 		Environment expected = new Environment(application, profiles, null, null, null);
 
 		expected.addAll(Arrays.asList(appSpecificProdParamsPs, sharedProdParamsPs, appSpecificDefaultParamsPs,
-				sharedDefaultParamsPs, appSpecificParamsPs, sharedParamsPs));
+	sharedDefaultParamsPs, appSpecificParamsPs, sharedParamsPs));
 
 		putParameters(expected);
 
@@ -566,13 +566,10 @@ public class AwsParameterStoreEnvironmentRepositoryTests {
 		String profile = configServerProperties.getDefaultProfile();
 		String[] profiles = StringUtils.commaDelimitedListToStringArray(profile);
 
-		Map<String, String> overrides = new HashMap<String, String>(4) {
-			{
-				put("logging.level.root", "boom");
-				put("logging.level.com.example.service", "boom");
-				put("spring.cache.redis.time-to-live", "-1");
-			}
-		};
+		Map<String, String> overrides = new HashMap<>(4);
+		overrides.put("logging.level.root", "boom");
+		overrides.put("logging.level.com.example.service", "boom");
+		overrides.put("spring.cache.redis.time-to-live", "-1");
 
 		configServerProperties.setOverrides(overrides);
 
@@ -641,7 +638,7 @@ public class AwsParameterStoreEnvironmentRepositoryTests {
 	@Test
 	public void factoryCustomizableWithRegion() {
 		AwsParameterStoreEnvironmentRepositoryFactory factory = new AwsParameterStoreEnvironmentRepositoryFactory(
-				new ConfigServerProperties());
+	new ConfigServerProperties());
 		AwsParameterStoreEnvironmentProperties properties = new AwsParameterStoreEnvironmentProperties();
 		properties.setRegion("us-east-1");
 		AwsParameterStoreEnvironmentRepository repository = factory.build(properties);
@@ -651,7 +648,7 @@ public class AwsParameterStoreEnvironmentRepositoryTests {
 	@Test
 	public void factoryCustomizableWithRegionAndEndpoint() {
 		AwsParameterStoreEnvironmentRepositoryFactory factory = new AwsParameterStoreEnvironmentRepositoryFactory(
-				new ConfigServerProperties());
+	new ConfigServerProperties());
 		AwsParameterStoreEnvironmentProperties properties = new AwsParameterStoreEnvironmentProperties();
 		properties.setRegion("us-east-1");
 		properties.setEndpoint("https://myawsendpoint/");
@@ -669,18 +666,18 @@ public class AwsParameterStoreEnvironmentRepositoryTests {
 			Set<Parameter> parameters = getParameters(ps, path, withSlashesForPropertyName);
 			parameters.forEach(value -> {
 				ssmClient.putParameter(
-						PutParameterRequest.builder().name(value.name()).dataType("text").value(value.value()).build());
+			PutParameterRequest.builder().name(value.name()).dataType("text").value(value.value()).build());
 				toBeRemoved.add(value.name());
 			});
 		}
 	}
 
 	private Set<Parameter> getParameters(PropertySource propertySource, String path,
-			boolean withSlashesForPropertyName) {
+boolean withSlashesForPropertyName) {
 		Function<Map.Entry<?, ?>, Parameter> mapper = p -> Parameter
-				.builder().name(path + (withSlashesForPropertyName
-						? ((String) p.getKey()).replace(".", DEFAULT_PATH_SEPARATOR) : p.getKey()))
-				.type(ParameterType.STRING).value((String) p.getValue()).version(1L).build();
+	.builder().name(path + (withSlashesForPropertyName
+	? ((String) p.getKey()).replace(".", DEFAULT_PATH_SEPARATOR) : p.getKey()))
+	.type(ParameterType.STRING).value((String) p.getValue()).version(1L).build();
 
 		return propertySource.getSource().entrySet().stream().map(mapper).collect(Collectors.toSet());
 	}
@@ -689,7 +686,7 @@ public class AwsParameterStoreEnvironmentRepositoryTests {
 	public void testOrderPopulation() {
 		int expectedOrder = Ordered.HIGHEST_PRECEDENCE;
 		AwsParameterStoreEnvironmentRepositoryFactory factory = new AwsParameterStoreEnvironmentRepositoryFactory(
-				new ConfigServerProperties());
+	new ConfigServerProperties());
 		AwsParameterStoreEnvironmentProperties properties = new AwsParameterStoreEnvironmentProperties();
 		properties.setRegion("us-east-1");
 		properties.setEndpoint("https://myawsendpoint/");
@@ -699,46 +696,46 @@ public class AwsParameterStoreEnvironmentRepositoryTests {
 		assertThat(actualOrder).isEqualTo(expectedOrder);
 	}
 
-	private final Map<String, String> SHARED_PROPERTIES = new HashMap<String, String>() {
-		{
-			put("logging.level.root", "warn");
-			put("spring.cache.redis.time-to-live", "0");
-		}
-	};
+	private static final Map<String, String> SHARED_PROPERTIES;
+	{
+		SHARED_PROPERTIES = new HashMap<>();
+		SHARED_PROPERTIES.put("logging.level.root", "warn");
+		SHARED_PROPERTIES.put("spring.cache.redis.time-to-live", "0");
+	}
 
-	private final Map<String, String> SHARED_DEFAULT_PROPERTIES = new HashMap<String, String>() {
-		{
-			put("logging.level.root", "error");
-			put("spring.cache.redis.time-to-live", "1000");
-		}
-	};
+	private static final Map<String, String> SHARED_DEFAULT_PROPERTIES;
+	{
+		SHARED_DEFAULT_PROPERTIES = new HashMap<>();
+		SHARED_DEFAULT_PROPERTIES.put("logging.level.root", "error");
+		SHARED_DEFAULT_PROPERTIES.put("spring.cache.redis.time-to-live", "1000");
+	}
 
-	private final Map<String, String> SHARED_PRODUCTION_PROPERTIES = new HashMap<String, String>() {
-		{
-			put("logging.level.root", "fatal");
-			put("spring.cache.redis.time-to-live", "5000");
-		}
-	};
+	private static final Map<String, String> SHARED_PRODUCTION_PROPERTIES;
+	{
+		SHARED_PRODUCTION_PROPERTIES = new HashMap<>();
+		SHARED_PRODUCTION_PROPERTIES.put("logging.level.root", "fatal");
+		SHARED_PRODUCTION_PROPERTIES.put("spring.cache.redis.time-to-live", "5000");
+	}
 
-	private final Map<String, String> APPLICATION_SPECIFIC_PROPERTIES = new HashMap<String, String>() {
-		{
-			put("logging.level.com.example.service", "trace");
-			put("spring.cache.redis.time-to-live", "30000");
-		}
-	};
+	private static final Map<String, String> APPLICATION_SPECIFIC_PROPERTIES;
+	{
+		APPLICATION_SPECIFIC_PROPERTIES = new HashMap<>();
+		APPLICATION_SPECIFIC_PROPERTIES.put("logging.level.com.example.service", "trace");
+		APPLICATION_SPECIFIC_PROPERTIES.put("spring.cache.redis.time-to-live", "30000");
+	}
 
-	private final Map<String, String> APPLICATION_SPECIFIC_DEFAULT_PROPERTIES = new HashMap<String, String>() {
-		{
-			put("logging.level.com.example.service", "debug");
-			put("spring.cache.redis.time-to-live", "60000");
-		}
-	};
+	private static final Map<String, String> APPLICATION_SPECIFIC_DEFAULT_PROPERTIES;
+	{
+		APPLICATION_SPECIFIC_DEFAULT_PROPERTIES = new HashMap<>();
+		APPLICATION_SPECIFIC_DEFAULT_PROPERTIES.put("logging.level.com.example.service", "debug");
+		APPLICATION_SPECIFIC_DEFAULT_PROPERTIES.put("spring.cache.redis.time-to-live", "60000");
+	}
 
-	private final Map<String, String> APPLICATION_SPECIFIC_PRODUCTION_PROPERTIES = new HashMap<String, String>() {
-		{
-			put("logging.level.com.example.service", "info");
-			put("spring.cache.redis.time-to-live", "300000");
-		}
-	};
+	private static final Map<String, String> APPLICATION_SPECIFIC_PRODUCTION_PROPERTIES;
+	{
+		APPLICATION_SPECIFIC_PRODUCTION_PROPERTIES = new HashMap<>();
+		APPLICATION_SPECIFIC_PRODUCTION_PROPERTIES.put("logging.level.com.example.service", "info");
+		APPLICATION_SPECIFIC_PRODUCTION_PROPERTIES.put("spring.cache.redis.time-to-live", "300000");
+	}
 
 }
