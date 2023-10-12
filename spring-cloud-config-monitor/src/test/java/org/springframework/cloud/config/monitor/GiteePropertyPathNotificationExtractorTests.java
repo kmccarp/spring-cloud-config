@@ -32,16 +32,16 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 public class GiteePropertyPathNotificationExtractorTests {
 
-	private GiteePropertyPathNotificationExtractor extractor = new GiteePropertyPathNotificationExtractor();
+	private final GiteePropertyPathNotificationExtractor extractor = new GiteePropertyPathNotificationExtractor();
 
-	private HttpHeaders headers = new HttpHeaders();
+	private final HttpHeaders headers = new HttpHeaders();
 
 	@Test
 	public void giteeSample() throws Exception {
 		// See https://git.mydoc.io/?t=154711
 		Map<String, Object> value = new ObjectMapper().readValue(
 				new ClassPathResource("pathsamples/gitee.json").getInputStream(),
-				new TypeReference<Map<String, Object>>() {
+				new TypeReference<>() {
 				});
 		this.headers.set("x-git-oschina-event", "Push Hook");
 		PropertyPathNotification extracted = this.extractor.extract(this.headers, value);
@@ -53,7 +53,7 @@ public class GiteePropertyPathNotificationExtractorTests {
 	public void notAPushNotDetected() throws Exception {
 		Map<String, Object> value = new ObjectMapper().readValue(
 				new ClassPathResource("pathsamples/github.json").getInputStream(),
-				new TypeReference<Map<String, Object>>() {
+				new TypeReference<>() {
 				});
 		this.headers.set("x-git-oschina-event", "Issue Hook");
 		PropertyPathNotification extracted = this.extractor.extract(this.headers, value);

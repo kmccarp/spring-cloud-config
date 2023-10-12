@@ -33,16 +33,16 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 public class GitlabPropertyPathNotificationExtractorTests {
 
-	private GitlabPropertyPathNotificationExtractor extractor = new GitlabPropertyPathNotificationExtractor();
+	private final GitlabPropertyPathNotificationExtractor extractor = new GitlabPropertyPathNotificationExtractor();
 
-	private HttpHeaders headers = new HttpHeaders();
+	private final HttpHeaders headers = new HttpHeaders();
 
 	@Test
 	public void pushEvent() throws Exception {
 		// See https://docs.gitlab.com/ee/web_hooks/web_hooks.html#push-events
 		Map<String, Object> value = new ObjectMapper().readValue(
 				new ClassPathResource("pathsamples/gitlab.json").getInputStream(),
-				new TypeReference<Map<String, Object>>() {
+				new TypeReference<>() {
 				});
 		this.headers.set("X-Gitlab-Event", "Push Hook");
 		PropertyPathNotification extracted = this.extractor.extract(this.headers, value);
@@ -56,7 +56,7 @@ public class GitlabPropertyPathNotificationExtractorTests {
 		// See https://docs.gitlab.com/ee/web_hooks/web_hooks.html#push-events
 		Map<String, Object> value = new ObjectMapper().readValue(
 				new ClassPathResource("pathsamples/gitlab.json").getInputStream(),
-				new TypeReference<Map<String, Object>>() {
+				new TypeReference<>() {
 				});
 		this.headers.set("X-Gitlab-Event", "Issue Hook");
 		PropertyPathNotification extracted = this.extractor.extract(this.headers, value);
