@@ -103,11 +103,11 @@ public class JGitEnvironmentRepositoryTests {
 
 	RefDatabase database = Mockito.mock(RefDatabase.class);
 
-	private StandardEnvironment environment = new StandardEnvironment();
+	private final StandardEnvironment environment = new StandardEnvironment();
 
 	private JGitEnvironmentRepository repository;
 
-	private File basedir = new File("target/config");
+	private final File basedir = new File("target/config");
 
 	private final ObjectId newObjectId = ObjectId.fromRaw(new int[] { 1, 2, 3, 4, 5 });
 
